@@ -1,0 +1,25 @@
+#!groovy
+
+// Required: https://plugins.jenkins.io/pipeline-utility-steps
+
+node {
+  def nodes = nodesByLabel label:"blender"
+  def nodesSorted = nodes.sort().toList()
+  def nodeTasks = [:]
+  def nodeCount = nodesSorted.size()
+  for (int i = 0; i < nodeCount; ++i) {
+    def nodeName = nodesSorted[i]
+    def thisNodeIndex = i
+
+    nodeTasks[nodeName] = {
+      node(nodeName) {
+        stage(nodeName) {
+          checkout scm
+          sh "./render.sh ${thisNodeIndex} ${nodeCount}"
+        }
+      }
+    }
+  }
+
+  parallel nodeTasks
+}
