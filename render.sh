@@ -71,7 +71,7 @@ EOF
 
 time blender \
   --background \
-  master.blend \
+  coldplanet_lofi.blend \
   --scene Scene \
   --render-output "${OUTPUT}/########.png" \
   --render-format PNG \
