@@ -60,6 +60,7 @@ TIME_START=$(date "+%Y-%m-%dT%H:%M:%S")
 OUTPUT="${WORKSPACE}/renders/${BUILD_ID}/"
 LOG_FILE="${OUTPUT}/${NODE_NAME}-"$(date "+%Y%m%dT%H%M%S.log")
 
+rm -rfv "${OUTPUT}" || fatal "failed to delete output directory"
 mkdir -p "${OUTPUT}" || fatal "mkdir failed"
 
 (
