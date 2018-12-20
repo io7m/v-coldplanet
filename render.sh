@@ -4,6 +4,9 @@ FRAME_COUNT=12600
 RENDER_HOST="jenkins-renders@mustard.int.arc7.info"
 RENDER_BASE_DIRECTORY="/shared/jenkins-renders/"
 
+# Allow files to be group writable
+umask 0012
+
 set -o pipefail
 
 fatal()
